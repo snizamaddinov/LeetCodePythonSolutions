@@ -12,6 +12,20 @@ class Solution(object):
 
         return max_sum
 
+    def kadane_algorithm(self, nums):
+        max_sum = float('-inf')
+        current_sum = 0
+
+        for i in nums:
+            current_sum += i
+            if current_sum > max_sum:
+                max_sum = current_sum
+
+            if current_sum < 0:
+                current_sum = 0
+
+        return max_sum
+
 
 class TestSolution(unittest.TestCase):
     def setUp(self):
@@ -30,6 +44,9 @@ class TestSolution(unittest.TestCase):
 
     def test_brute_force(self):
         self.run_test(self.solution.brute_force)
+
+    def test_kadane_algorithm(self):
+        self.run_test(self.solution.kadane_algorithm)
 
 
 if __name__ == '__main__':
